@@ -42,4 +42,4 @@ jobs:
           pip3 install -r requirements.txt
       # Execute Tests lambda
       - name: Run test for sample lambda
-        run: python -m pytest lambda/test_lambda.py -sv
+        run: pytest -s
