@@ -31,17 +31,18 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
+  test:
+    runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Python 3
+      - uses: actions/checkout@master
+      - name: Install Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
       - name: Install dependencies
         run: |
-          apt-get install -y
           pip3 install --upgrade pip==20.0.1
-          pip install -r requirements.txt
+          pip3 install -r tests/requirements.txt
       # Execute Tests lambda
       - name: Run test for sample lambda
         run: python -m pytest lambda/test_lambda.py -sv
