@@ -1,0 +1,46 @@
+name: Aws Services CI
+env:
+  AWS_HOST: localstack
+  SERVICES: lambda,sqs,s3 # Add more services depending on your test case
+  NODE_ENV: test
+on:
+  push:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    container:
+      image: node:14.5.0-alpine
+    services:
+      localstack:
+        image: localstack/localstack
+        ports:
+          - 4566:4566 # Localstack exposes all services on same port
+        env:
+          SERVICES: ${{ env.SERVICES }}
+          DEBUG: ""
+          DATA_DIR: ""
+          LAMBDA_EXECUTOR: ""
+          KINESIS_ERROR_PROBABILITY: ""
+          DOCKER_HOST: unix:///var/run/docker.sock
+          HOST_TMP_FOLDER: "/tmp"
+          HOSTNAME_EXTERNAL: ${{ env.AWS_HOST }} # Required so that resource urls are provided properly 
+                                                 # e.g sqs url will get localhost if we don't set this env to map our service
+        options: >-
+          --name=localstack
+          --health-cmd="curl -sS 127.0.0.1:4566 || exit 1"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Python 3
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tests/requirements.txt
+      # Execute Tests lambda
+      - name: Run test for sample lambda
+        run: python -m pytest lambda/test_lambda.py -sv
