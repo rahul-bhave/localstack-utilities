@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip3 install --upgrade pip==20.0.1
-          pip3 install -r tests/requirements.txt
+          pip3 install -r requirements.txt
       # Execute Tests lambda
       - name: Run test for sample lambda
         run: python -m pytest lambda/test_lambda.py -sv
