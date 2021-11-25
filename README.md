@@ -50,6 +50,3 @@ Tearing down the class
 ============================= 1 passed in 23.21s ==============================
 
 ```
-
-LocalStack is set up to invoke Lambdas in separate docker containers with `lambci`:
-
