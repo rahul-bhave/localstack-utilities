@@ -29,7 +29,9 @@ jobs:
           pip3 install -r requirements.txt
       # Execute Tests lambda
       - name: Run test for sample lambda
-        run: pytest -s
+        run: |
+          cd lambda
+          pytest -s
         env:
           DEFAULT_REGION: eu-west-1
           AWS_ACCOUNT_ID: "000000000000"
