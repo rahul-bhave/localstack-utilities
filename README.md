@@ -27,29 +27,28 @@ To run the test, use the following commands within the root of the project:
 
 ```
 $ cd lambda
-$ pytest -s . 
+$ pytest -sv . 
 ```
 
 Wait a while, you should see similar to the following:
 
 ```
+$ pytest -sv
 ============================= test session starts =============================
-platform win32 -- Python 3.9.6, pytest-5.3.5, py-1.11.0, pluggy-0.13.1
+platform win32 -- Python 3.9.6, pytest-5.3.5, py-1.11.0, pluggy-0.13.1 -- C:\Users\rahulbhave\code\localstack-utilities\venv3\Scripts\python.exe
+cachedir: .pytest_cache
 rootdir: C:\Users\rahulbhave\code\localstack-utilities\lambda
-collected 1 item
+collecting ... collected 1 item
 
-test_lambda.py
+test_lambda.py::Test::test_that_lambda_returns_correct_message
 Setting up the class
-.
+PASSED
 Tearing down the class
 
 ---------printing test results------------
-=== 1 passed and 0 failed tests in 23.198726177215576 seconds===
+=== 1 passed and 0 failed tests in 16.08722424507141 seconds===
 ------------------------------------------
 
-
-============================= 1 passed in 23.21s ==============================
-
 ```
-Reference:
-https://github.com/ciaranevans/localstack_and_pytest_1
+Reference used:
+https://medium.com/uk-hydrographic-office/developing-and-testing-lambdas-with-pytest-and-localstack-21a111b7f6e8
