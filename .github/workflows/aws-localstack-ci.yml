@@ -1,7 +1,5 @@
 name: Aws Localstack CI
-
 on: push
-
 jobs:
   localstack:
     runs-on: ubuntu-latest
