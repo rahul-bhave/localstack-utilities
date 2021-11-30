@@ -16,7 +16,6 @@ jobs:
           - 4571:4571
     steps:
       - uses: actions/checkout@v2
-
       - name: Install Python 3.8
         uses: actions/setup-python@v1
         with:
