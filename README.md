@@ -50,5 +50,5 @@ Tearing down the class
 ------------------------------------------
 
 ```
-Reference used:
+For writing tests in this repo following Medium article is refered:
 https://medium.com/uk-hydrographic-office/developing-and-testing-lambdas-with-pytest-and-localstack-21a111b7f6e8
