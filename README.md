@@ -50,5 +50,58 @@ Tearing down the class
 ------------------------------------------
 
 ```
+
+This github action flow is very simple and consists of following three steps-
+
+Step 1
+Running localstack services.
+
+```
+name: Localstack CI
+on: push
+jobs:
+  localstack:
+    runs-on: ubuntu-latest
+    services:
+      localstack:
+        image: localstack/localstack:latest
+        env:
+          SERVICES: lambda
+          DEFAULT_REGION: eu-west-1
+          AWS_ACCESS_KEY_ID: localkey
+          AWS_SECRET_ACCESS_KEY: localsecret
+        ports:
+          - 4566:4566
+          - 4571:4571
+
+```
+
+Step 2
+Install python and other test dependencies
+
+```
+steps:
+      - uses: actions/checkout@v2
+      - name: Install Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          pip3 install --upgrade pip==20.0.1
+          pip3 install -r requirements.txt
+```
+
+Step 3
+Run the tests against LocalStack
+
+```
+# Execute Tests lambda
+      - name: Run test for sample lambda
+        run: |
+          cd lambda
+          pytest -sv
+```
+
 For writing tests in this repo following Medium article is refered:
 https://medium.com/uk-hydrographic-office/developing-and-testing-lambdas-with-pytest-and-localstack-21a111b7f6e8
