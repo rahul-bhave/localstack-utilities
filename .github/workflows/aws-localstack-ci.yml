@@ -1,4 +1,4 @@
-name: Aws Localstack CI
+name: Localstack CI
 on: push
 jobs:
   localstack:
