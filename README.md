@@ -51,6 +51,8 @@ Tearing down the class
 
 ```
 
+## GitHub Action Steps
+
 This github action flow is very simple and consists of following three steps-
 
 Step 1
